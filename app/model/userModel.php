@@ -1,5 +1,5 @@
 <?php
-    require_once('../config/database.php');
+
 
     class UserModel
     {
@@ -130,7 +130,7 @@
         public function logout()
         {
             session_destroy();
-            header("Location: ../view/login.php");
+            header("Location: ../authentification/login.php");
             exit();
         }
 

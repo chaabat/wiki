@@ -45,10 +45,10 @@ class usercontroller
                 $_SESSION['role'] = $authenticatedUser['role'];
 
                 if ($_SESSION['role'] === 'admin') {
-                    header('Location: ../view/dashboard.php');
+                    header('Location: ../admin/dashboard.php');
                     exit();
                 } elseif ($_SESSION['role'] === 'auteur') {
-                    header('Location: ../view/home.php');
+                    header('Location: ../author/home.php');
                     exit();
                 }
             } else {
