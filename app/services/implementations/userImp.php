@@ -1,11 +1,11 @@
 <?php
 
-require_once(__DIR__ . '/../../config/database.php');
+require_once(__DIR__ .'/../../config/database.php');
 
 require_once(__DIR__ .'/../../model/userModel.php');
 require_once(__DIR__ .'/../interfaces/userInterface.php');
 
-class UserImp extends DataBase implements UserInterface{
+class UserImp  implements UserInterface{
 
  public function register()
  {

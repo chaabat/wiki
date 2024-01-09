@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '../model/tagModel.php');
+require_once(__DIR__ . '/../model/tagModel.php');
 
 class tagController
 {

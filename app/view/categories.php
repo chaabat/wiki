@@ -1,7 +1,7 @@
 <?php
 require_once(__DIR__ .'/../controller/usercontroller.php');
 
-require_once(__DIR__ .'/../controller/categoriesController.php');
+require_once(__DIR__ .'/../controller/categorieController.php');
 
 
 
