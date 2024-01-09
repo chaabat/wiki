@@ -3,12 +3,12 @@
 
     class UserModel
     {
-        private $idUser;
-        private $name;
-        private $username;
+        private $id;
+        private $nom;
+        private $prenom;
         private $email;
-        private $password;
-        private $picture;
+        private $pass;
+        private $tel;
         private $role;
         private $conn;
 
@@ -19,74 +19,72 @@
         }
 
 
-        public function getIdUser()
+        public function getId()
         {
-            return $this->idUser;
+            return $this->id;
         }
 
-        public function setIdUser($idUser)
+        public function setId($id)
         {
-            $this->idUser = $idUser;
+            $this->id = $id;
         }
-        public function getName()
+        public function getnom()
         {
-            return $this->name;
-        }
-
-        public function setName($name)
-        {
-            $this->name = $name;
-        }
-        public function getUsername()
-        {
-            return $this->username;
+            return $this->nom;
         }
 
-        public function setUsername($username)
+        public function setnom($nom)
         {
-            $this->username = $username;
+            $this->nom = $nom;
+        }
+        public function getprenom()
+        {
+            return $this->prenom;
         }
 
-        public function getEmail()
+        public function setprenom($prenom)
+        {
+            $this->prenom = $prenom;
+        }
+
+        public function getemail()
         {
             return $this->email;
         }
 
-        public function setEmail($email)
+        public function setemail($email)
         {
             $this->email = $email;
         }
-        public function getPassword()
+        public function getpass()
         {
-            return $this->password;
+            return $this->pass;
         }
 
-        public function setPassword($password)
+        public function setpass($pass)
         {
-            $this->password = $password;
+            $this->pass = $pass;
         }
-        public function getPicture()
+        public function gettel()
         {
-            return $this->picture;
+            return $this->tel;
         }
 
-        public function setPicture($picture)
+        public function settel($tel)
         {
-            $this->picture = $picture;
+            $this->tel = $tel;
         }
-        public function getRole()
+        public function getrole()
         {
             return $this->role;
         }
 
-        public function setRole($role)
+        public function setrole($role)
         {
             $this->role = $role;
         }
 
-  
         public function register()
-
         {
             $emailCheckQuery = "SELECT COUNT(*) FROM user WHERE email=:email";
             $emailCheckStmt = $this->conn->prepare($emailCheckQuery);
@@ -98,17 +96,17 @@
                 return "L'email existe déjà.";
             }
 
-            $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+            $this->pass = password_hash($this->pass, PASSWORD_DEFAULT);
 
-            $query = "INSERT INTO `user` (name, username, email, password, picture,role)
-                    VALUES (:name, :username, :email, :password, :picture,'auteur')";
+            $query = "INSERT INTO `user` (nom, prenom, email, pass, tel,role)
+                    VALUES (:username, :surname, :email, :password, :tel,'auteur')";
 
             $stmt = $this->conn->prepare($query);
-            $stmt->bindParam(":name", $this->name);
-            $stmt->bindParam(":username", $this->username);
+            $stmt->bindParam(":username", $this->nom);
+            $stmt->bindParam(":surname", $this->prenom);
             $stmt->bindParam(":email", $this->email);
-            $stmt->bindParam(":password", $this->password);
-            $stmt->bindParam(":picture", $this->picture);
+            $stmt->bindParam(":password", $this->pass);
+            $stmt->bindParam(":tel", $this->tel);
 
             $stmt->execute();
         }
@@ -121,7 +119,7 @@
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($result && password_verify($this->password, $result['password'])) {
+            if ($result && password_verify($this->pass, $result['pass'])) {
                
                 return $result;
             } else {
@@ -132,8 +130,8 @@
         public function logout()
         {
             session_destroy();
-            header("Location: ../services/view/logout.php");
+            header("Location: ../view/login.php");
             exit();
         }
+
     }
-    ?>

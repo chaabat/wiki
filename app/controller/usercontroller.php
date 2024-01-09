@@ -1,9 +1,7 @@
 <?php
-
 require_once(__DIR__ . '/../model/userModel.php');
 
-// require_once('../services/implimentations/userImp.php');
-
+require_once(__DIR__ . '/../services/implementations/userImp.php');
 
 class usercontroller
 {
@@ -15,34 +13,35 @@ class usercontroller
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             $user = new UserModel();
             $role = 'auteur';
-            $user->setName($_POST['name']);
-            $user->setUsername($_POST['username']);
-            $user->setEmail($_POST['email']);
-            $user->setPassword($_POST['password']);
-            $user->setPicture($_POST['picture']);
-            $user->setRole($role);
+            $user->setnom($_POST['nom']);
+            $user->setprenom($_POST['prenom']);
+            $user->setemail($_POST['email']);
+            $user->setpass($_POST['pass']);
+            $user->settel($_POST['tel']);
+            $user->setrole($role);
             $error = $user->register();
 
             if (empty($error)) {
                 header('Location: ../view/login.php');
                 exit();
             }
+            
 
             return $error;
         }
     }
     public function login()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['password']) && isset($_POST['email'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['pass']) && isset($_POST['email'])) {
             $user = new UserModel();
-            $user->setEmail($_POST['email']);
-            $user->setPassword($_POST['password']);
+            $user->setemail($_POST['email']);
+            $user->setpass($_POST['pass']);
             $authenticatedUser = $user->login();
 
             if ($authenticatedUser) {
                 session_start();
-                $_SESSION['idUser'] = $authenticatedUser['idUser'];
-                $_SESSION['name'] = $authenticatedUser['name'];
+                $_SESSION['iduser'] = $authenticatedUser['iduser'];
+                $_SESSION['nom'] = $authenticatedUser['nom'];
                 $_SESSION['role'] = $authenticatedUser['role'];
 
                 if ($_SESSION['role'] === 'admin') {
@@ -70,7 +69,7 @@ class usercontroller
     {
         session_start();
 
-        if (!isset($_SESSION['idUser'])) {
+        if (!isset($_SESSION['iduser'])) {
             header("Location: login.php");
             exit();
         }
@@ -80,4 +79,18 @@ class usercontroller
             exit();
         }
     }
+
+    public function checkRoleAdmin()
+    {
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin') {
+            return true;
+        }
+    }
+    public function checkRoleAuteur()
+    {
+        if (isset($_SESSION['role']) && $_SESSION['role'] === 'auteur') {
+            return true;
+        }
+    }
+
 }
