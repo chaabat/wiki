@@ -16,7 +16,7 @@ $m = $user->login();
 	<title>Wiki™</title>
 </head>
 
-<<body class="bg-[#caf0f8]">
+<body class="bg-[#caf0f8]">
 
 <!-- Example -->
 <div class="flex min-h-screen">

@@ -28,7 +28,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="./author/wikis.php" class="flex flex-row hover:bg-white items-center h-12 ">
+                    <a href="../../../index.php" class="flex flex-row hover:bg-white items-center h-12 ">
                         <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><img class="h-8 sm:w-8 w-full mr-2" src="../../../public/img/livre.png" alt=""></span>
                         <span class="text-lm font-bold  text-white">Wikis</span>
                     </a>
