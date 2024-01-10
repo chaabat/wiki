@@ -21,7 +21,7 @@ $user->logout();
 
 <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
 
-<body>
+<body >
 
     <div class="min-h-screen flex flex-col sm:flex-row bg-gray-100">
 

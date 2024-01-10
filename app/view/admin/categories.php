@@ -28,7 +28,7 @@ $cat->deleteCategorie();
 <!-- component -->
 <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
 
-<body>
+<body class="bg-[#b7e4c7]">
 
     <div class="min-h-screen flex flex-col sm:flex-row bg-gray-100">
 
@@ -77,7 +77,7 @@ $cat->deleteCategorie();
         <!-- Content -->
 
 
-        <div class="flex-grow p-4 bg-gray-200">
+        <div class="flex-grow p-4 bg-[#caf0f8]">
 
 
             <div class="px-6 py-8 max-w-4xl mx-auto">
