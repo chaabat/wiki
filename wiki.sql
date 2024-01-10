@@ -1,23 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 5.2.1
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Jan 10, 2024 at 02:35 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
 -- Database: `wiki`
 --
 
@@ -31,14 +12,9 @@ CREATE TABLE `categorie` (
   `categorieID` int(11) NOT NULL,
   `nomCategorie` varchar(255) NOT NULL,
   `dateCategorie` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ;
 
---
--- Dumping data for table `categorie`
---
 
-INSERT INTO `categorie` (`categorieID`, `nomCategorie`, `dateCategorie`) VALUES
-(17, 'zzd', '2024-01-10 14:31:00');
 
 -- --------------------------------------------------------
 
@@ -49,15 +25,9 @@ INSERT INTO `categorie` (`categorieID`, `nomCategorie`, `dateCategorie`) VALUES
 CREATE TABLE `tags` (
   `tagID` int(11) NOT NULL,
   `nomTag` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
---
--- Dumping data for table `tags`
---
 
-INSERT INTO `tags` (`tagID`, `nomTag`) VALUES
-(14, 'sport'),
-(15, 'vetmetnt');
 
 -- --------------------------------------------------------
 
@@ -73,7 +43,7 @@ CREATE TABLE `user` (
   `pass` varchar(100) DEFAULT NULL,
   `tel` varchar(20) DEFAULT NULL,
   `role` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ;
 
 --
 -- Dumping data for table `user`
@@ -98,7 +68,7 @@ CREATE TABLE `wiki` (
   `archive` int(11) DEFAULT NULL,
   `iduser` int(11) DEFAULT NULL,
   `categorieID` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ;
 
 -- --------------------------------------------------------
 
@@ -109,7 +79,7 @@ CREATE TABLE `wiki` (
 CREATE TABLE `wikitag` (
   `wikiID` int(11) NOT NULL,
   `tagID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+);
 
 --
 -- Indexes for dumped tables
@@ -157,25 +127,25 @@ ALTER TABLE `wikitag`
 -- AUTO_INCREMENT for table `categorie`
 --
 ALTER TABLE `categorie`
-  MODIFY `categorieID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `categorieID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tags`
 --
 ALTER TABLE `tags`
-  MODIFY `tagID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `tagID` int(11) NOT NULL AUTO_INCREMENT ;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `iduser` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `iduser` int(10) NOT NULL AUTO_INCREMENT ;
 
 --
 -- AUTO_INCREMENT for table `wiki`
 --
 ALTER TABLE `wiki`
-  MODIFY `wikiID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `wikiID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -196,6 +166,4 @@ ALTER TABLE `wikitag`
   ADD CONSTRAINT `wikitag_ibfk_2` FOREIGN KEY (`tagID`) REFERENCES `tags` (`tagID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
