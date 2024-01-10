@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '../../model/wikiModel.php');
+require_once(__DIR__ . '/../model/wikiModel.php');
 
 class wikiController
 {
@@ -17,7 +17,8 @@ class wikiController
             $Wiki->setCreationDate(date('Y-m-d H:i:s'));
     
 
-           
+            // var_dump($iduser, $categoryID, $_POST['title'], $_POST['content'], $_POST['selectedTagIds']);
+            // die("whyyy");
             $wikiID = $Wiki->addWiki($iduser, $categoryID);
             if ($wikiID !== false) {
                 if (!empty($_POST['selectedTagIds'])) {
@@ -25,7 +26,7 @@ class wikiController
     
 
 
-               
+                    // var_dump($tagIDs);
     
                     foreach ($tagIDs as $tagID) {
                         $Wiki->addWikiTag($wikiID, $tagID);
@@ -43,8 +44,30 @@ class wikiController
     public function DisplayWikis()
     {
         $wiki = new wikiModel();
-        return $wiki->DisplayWikis();
+    
+        // Check if iduser is set in the session
+        if (isset($_SESSION['iduser']) && !empty($_SESSION['iduser'])) {
+            $iduser = $_SESSION['iduser'];
+            return $wiki->DisplayWikis($iduser);
+        } else {
+            // If iduser is not set or empty, return all wikis
+            return $wiki->displayAllWikis();
+        }
     }
+
+    public function deleteWiki()
+    {
+        if (isset($_GET['deletewiki']) && isset($_GET['wikiID']) ) {
+        $wikiID = $_GET['wikiID'];
+        // var_dump($wikiID);
+        // die("");
+        $wiki = new wikiModel();
+        $wiki->deleteWiki($wikiID);
+        header('Location: wikis.php');
+        exit();
+    }
+    }
+
     
     
 

@@ -64,13 +64,7 @@ CREATE TABLE `user` (
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`iduser`, `nom`, `prenom`, `email`, `pass`, `tel`, `role`) VALUES
-(3, 'Barton', 'lynub', 'qohitilapy@mailinator.com', '$2y$10$39tOKRmiTiqto/yFjEfCeeAYp39cQ0OV9.EK2GRZsHyn2180ABGuu', '0654215485', 'auteur'),
-(4, 'Wallace', 'juzahis', 'xojypomoz@mailinator.com', '$2y$10$bxqaAvjU0PyJzXE4L/fqd.UL5bs7HO8ffMBa0a61v6LNi/XG7cp.i', '0654875421', 'auteur'),
-(5, 'sebti', 'douae', 'douae123@gmail.com', '$2y$10$3eeyRl3eQgW3kNwSq7wbKO4sjFdqUnoFOsivHfKu9ThTPdG1U04qi', '0654871254', 'admin'),
-(6, 'idelkadi', 'radia', 'radia123@gmail.com', '$2y$10$fTW9oXip3.mO93.HRMIzP.2SlKQwCXsMGmvuXCIslT.7TlE7.WLDy', '0645789461', 'auteur'),
-(7, 'Hawkins', 'popocy', 'tuxoz@mailinator.com', '$2y$10$fpdqXleC2ryPobPMp8P3pOSFRriUlZt57lNRJaXa03kZMIxezBOge', '0654871542', 'auteur'),
-(8, 'Murphy', 'wacup', 'wagiva@mailinator.com', '$2y$10$TDuseZ4UvGsPVCqcuQSGve0ErPmC0XQUllHgj88noUWUvwvJOJkfC', '0215454454', 'auteur');
+
 
 -- --------------------------------------------------------
 
@@ -173,15 +167,17 @@ ALTER TABLE `wiki`
 -- Contraintes pour la table `wiki`
 --
 ALTER TABLE `wiki`
-  ADD CONSTRAINT `wiki_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `user` (`iduser`),
-  ADD CONSTRAINT `wiki_ibfk_2` FOREIGN KEY (`categorieID`) REFERENCES `categorie` (`categorieID`);
+  ADD CONSTRAINT `wiki_ibfk_1` FOREIGN KEY (`iduser`) REFERENCES `user` (`iduser`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wiki_ibfk_2` FOREIGN KEY (`categorieID`) REFERENCES `categorie` (`categorieID`) ON DELETE CASCADE ON UPDATE CASCADE
+  ;
 
 --
 -- Contraintes pour la table `wikitag`
 --
 ALTER TABLE `wikitag`
-  ADD CONSTRAINT `wikitag_ibfk_1` FOREIGN KEY (`wikiID`) REFERENCES `wiki` (`wikiID`),
-  ADD CONSTRAINT `wikitag_ibfk_2` FOREIGN KEY (`tagID`) REFERENCES `tags` (`tagID`);
+  ADD CONSTRAINT `wikitag_ibfk_1` FOREIGN KEY (`wikiID`) REFERENCES `wiki` (`wikiID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `wikitag_ibfk_2` FOREIGN KEY (`tagID`) REFERENCES `tags` (`tagID`) ON DELETE CASCADE ON UPDATE CASCADE
+  ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
