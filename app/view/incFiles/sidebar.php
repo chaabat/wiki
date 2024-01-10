@@ -1,5 +1,5 @@
    <!-- Sidebar -->
-   <div class="flex flex-col sm:w-56 bg-[#023e8a] overflow-hidden">
+   <div class="flex flex-col sm:w-56 bg-[#ffe85c] overflow-hidden">
             <div class="flex items-center justify-center h-20 shadow-md">
             <img class="h-[80px] w-[120px] rounded-[900px]" src="../../../public/img/wiki.png" alt="">
 
