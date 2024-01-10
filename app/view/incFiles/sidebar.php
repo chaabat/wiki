@@ -8,7 +8,8 @@
             <ul class="flex flex-col py-4">
                 <li>
                     <a href="dashboard.php" class="flex flex-row hover:bg-white hover:text-black  items-center h-12 ">
-                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><i class="bx bx-home"></i></span>
+                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"> <img class="h-8 sm:w-8 w-full mr-2" src="../../../public/img/dashbord.png" alt="">
+</span>
                         <span class="text-lm font-bold  text-white">Dashboard</span>
                     </a>
                 </li>
@@ -16,19 +17,19 @@
 
                 <li>
                     <a href="categories.php" class="flex flex-row hover:bg-white items-center h-12 ">
-                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><i class="bx bx-shopping-bag"></i></span>
+                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"> <img class="h-8 sm:w-8 w-full mr-2" src="../../../public/img/categorie.png" alt=""></span>
                         <span class="text-lm font-bold  text-white">Categories</span>
                     </a>
                 </li>
                 <li>
                     <a href="tags.php" class="flex flex-row hover:bg-white items-center h-12 ">
-                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><i class="bx bx-tag"></i></span>
+                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><img class="h-8 sm:w-8 w-full mr-2" src="../../../public/img/etiqueter.png" alt=""></span>
                         <span class="text-lm font-bold  text-white">tags</span>
                     </a>
                 </li>
                 <li>
                     <a href="../index.php" class="flex flex-row hover:bg-white items-center h-12 ">
-                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><i class="bx bx-book-open"></i></span>
+                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><img class="h-8 sm:w-8 w-full mr-2" src="../../../public/img/livre.png" alt=""></span>
                         <span class="text-lm font-bold  text-white">Wikis</span>
                     </a>
                 </li>
@@ -47,7 +48,7 @@
                 </li> -->
                 <li>
                     <a href="./dashboard.php?deconn" class="flex flex-row hover:bg-white items-center h-12 ">
-                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><i class="bx bx-log-out"></i></span>
+                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><img class="h-8 sm:w-8 w-full mr-2" src="../../../public/img/se-deconnecter.png" alt=""></span>
                         <span class="text-lm font-bold  text-white">Logout</span>
                     </a>
                 </li>
