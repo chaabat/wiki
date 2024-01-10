@@ -16,7 +16,7 @@ $m = $user->login();
 	<title>Wiki™</title>
 </head>
 
-<<body class="bg-white">
+<<body class="bg-[#caf0f8]">
 
 <!-- Example -->
 <div class="flex min-h-screen">
@@ -25,17 +25,17 @@ $m = $user->login();
   <div class="flex flex-row w-full">
 
 	<!-- Sidebar -->
-	<div class='hidden lg:flex flex-col justify-between bg-[#ffe85c] lg:p-8 xl:p-12 lg:max-w-sm xl:max-w-lg'>
+	<div class='hidden lg:flex flex-col justify-between bg-[#023e8a] lg:p-8 xl:p-12 lg:max-w-sm xl:max-w-lg'>
 	  <div class="flex items-center justify-start space-x-3">
 		<span class="bg-black rounded-full w-8 h-8"></span>
 		<a href="#" class="font-medium text-xl">Brand</a>
 	  </div>
 	  <div class='space-y-5'>
-		<h1 class="lg:text-3xl xl:text-5xl xl:leading-snug font-extrabold">Enter your account and create new
+		<h1 class="lg:text-3xl xl:text-5xl xl:leading-snug font-extrabold text-white">Enter your account and create new
 		  Wikis</h1>
 		<p class="text-lg">You do not have an account?</p>
 		<a href="./register.php"
-		  class="inline-block flex-none px-4 py-3 border-2 rounded-lg font-medium border-black bg-black text-white">Create
+		  class="inline-block flex-none px-4 py-3 border-2 rounded-lg font-medium border-black bg-[#caf0f8] text-black">Create
 		  account here</a>
 	  </div>
 	  <p class="font-medium">© 2024 Wiki</p>
@@ -64,18 +64,18 @@ $m = $user->login();
 		  
 		</div>
 		<div class="flex flex-col max-w-md space-y-5">
-		<label for="email" class="   text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email Address</label>
+		<label for="email" class="   text-black text-m peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Email Address</label>
 
 		  <input type="text" name="email" id="email" 
 			class="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal" />
 			</div>
 			<div class="flex flex-col max-w-md space-y-5">
-			<label for="password" class="   text-gray-600 text-sm peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
+			<label for="password" class="   text-black text-m peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-440 peer-placeholder-shown:top-2 transition-all peer-focus:-top-3.5 peer-focus:text-gray-600 peer-focus:text-sm">Password</label>
 
 		  <input type="password" name="pass" id="pass" 
 			class="flex px-3 py-2 md:px-4 md:py-3 border-2 border-black rounded-lg font-medium placeholder:font-normal" />
 			</div>
-		  <button type="submit" name="submit" id="submit" class="flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black bg-black text-white">
+		  <button type="submit" name="submit" id="submit" class="flex items-center justify-center flex-none px-3 py-2 md:px-4 md:py-3 border-2 rounded-lg font-medium border-black bg-[#023e8a] text-white">
 			login</button>
 			
 			</div> 
