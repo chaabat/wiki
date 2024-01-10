@@ -1,8 +1,8 @@
 <!-- component -->
 <body class="bg-blue-500">
-	<nav class="relative px-4 py-4 flex justify-between items-center bg-white">
+	<nav class="relative px-4 py-4 flex justify-between items-center bg-white h-[80px]">
 		<a class="text-3xl font-bold leading-none" href="#">
-        <img class="h-[80px]" src="./public/img/logo.png" alt="">
+        <img class="h-[80px]" src="./public/img/z.png" alt="">
 
 		</a>
 		<div class="lg:hidden">
