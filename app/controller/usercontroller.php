@@ -1,7 +1,8 @@
 <?php
 require_once(__DIR__ . '/../model/userModel.php');
+require_once(__DIR__ . '/../config/database.php');
 
-require_once(__DIR__ . '/../services/implementations/userImp.php');
+// require_once(__DIR__ . '/../services/implementations/userImp.php');
 
 class usercontroller
 {

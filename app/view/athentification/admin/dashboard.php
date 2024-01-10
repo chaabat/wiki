@@ -29,18 +29,18 @@ $user->logout();
      
 
        
-        <div class="flex-grow p-4 bg-[#caf0f8]">
+        <div class="flex-grow p-4 bg-[#d8e2dc]">
 
 
                 <div class="px-6 py-8 max-w-4xl mx-auto">
                     <div class="max-w-4xl mx-auto">
-                        <div class="bg-[#023e8a] rounded-3xl p-8 mb-5">
-                            <h1 class="text-3xl font-bold mb-10 text-white">Welcome to your account, We are so happy to see you</h1>
+                        <div class="bg-yellow-200 rounded-3xl p-8 mb-5">
+                            <h1 class="text-3xl font-bold mb-10">Welcome to your account, We are so happy to see you</h1>
 
-                            <hr class="my-10 border border-white">
+                            <hr class="my-10 border border-yellow-700">
                             <div class="flex justify-center items-center">
 
-                                <h2 class="text-2xl font-bold mb-4 text-white">Statistiques</h2>
+                                <h2 class="text-2xl font-bold mb-4">Statistiques</h2>
                             </div>
                             <div class="grid grid-cols-1 gap-5 sm:grid-cols-3 mt-4">
                                 <div class="bg-white overflow-hidden shadow sm:rounded-lg">

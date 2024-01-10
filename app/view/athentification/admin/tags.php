@@ -113,17 +113,15 @@ $tag->deletetag();
         <!-- Content -->
 
 
-        <div class="flex-grow p-4 bg-[#caf0f8]">
-
+        <div class="flex-grow p-4 bg-[#d8e2dc]">
 
 
             <div class="px-6 py-8 max-w-4xl mx-auto">
                 <div class="max-w-4xl mx-auto">
-                <div class="bg-[#023e8a] rounded-3xl p-8 mb-5">
+                    <div class="bg-blue-200 rounded-3xl p-8 mb-5">
+                        <h1 class="text-3xl font-bold mb-10">Tags</h1>
 
-                        <h1 class="text-3xl font-bold mb-10 text-white">Tags</h1>
-
-                        <hr class="my-10 border border-white">
+                        <hr class="my-10 border border-blue-700">
 
                         <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
                             <div class="bg-gray-50 py-1 px-1 flex flex-col items-center cursor-pointer sm:rounded-lg">
