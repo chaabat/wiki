@@ -1,6 +1,6 @@
 <!-- component -->
 <body class="bg-blue-500">
-	<nav class="relative px-4 py-4 flex justify-between items-center bg-white h-[80px]">
+	<nav class="relative px-4 py-4 flex justify-between items-center bg-[#0466c8] h-[80px]">
 		<a class="text-3xl font-bold leading-none" href="#">
         <img class="h-[80px]" src="./public/img/z.png" alt="">
 
@@ -18,7 +18,7 @@
 			<input type="text" placeholder="Search wikis..." class="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-500 w-96">
 			<div class="ml-8 absolute inset-y-0 right-0 flex items-center pr-3">
 				<a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-xl transition duration-200" href="./app/view/authentification/login.php">Sign In</a>
-				<a class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" href="./app/view/authentification/register.php">Sign up</a>
+				<a class="hidden lg:inline-block py-2 px-6 bg-[#caf0f8]  text-sm text-black font-bold rounded-xl transition duration-200" href="./app/view/authentification/register.php">Sign up</a>
 			</div>
 		</div>
 	</nav>

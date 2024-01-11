@@ -1,5 +1,8 @@
 <?php
 require_once(__DIR__ . '/../model/tagModel.php');
+require_once(__DIR__ . '/../config/database.php');
+
+
 
 class tagController
 {
@@ -37,7 +40,7 @@ class tagController
 
     public function deletetag()
     {
-        if (isset($_GET['deletetag']) && isset($_GET['tagID'])) {
+        if (isset($_GET['deletetag']) && isset($_GET['tagID']) ) {
             $tagID = $_GET['tagID'];
             $tag = new tagModel();
             $tag->deletetag($tagID);

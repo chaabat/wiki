@@ -27,8 +27,9 @@ $m = $user->login();
 	<!-- Sidebar -->
 	<div class='hidden lg:flex flex-col justify-between bg-[#023e8a] lg:p-8 xl:p-12 lg:max-w-sm xl:max-w-lg'>
 	  <div class="flex items-center justify-start space-x-3">
-		<span class="bg-black rounded-full w-8 h-8"></span>
-		<a href="#" class="font-medium text-xl">Brand</a>
+	  <span class="bg-[#caf0f8] rounded-full w-8 h-8"></span>
+
+		<a href="#" class="font-medium text-xl">Wiki™ </a>
 	  </div>
 	  <div class='space-y-5'>
 		<h1 class="lg:text-3xl xl:text-5xl xl:leading-snug font-extrabold text-white">Enter your account and create new
@@ -45,8 +46,8 @@ $m = $user->login();
 	<div class="flex flex-1 flex-col items-center justify-center px-10 relative">
 	  <div class="flex lg:hidden justify-between items-center w-full py-4">
 		<div class="flex items-center justify-start space-x-3">
-		  <span class="bg-black rounded-full w-6 h-6"></span>
-		  <a href="#" class="font-medium text-lg">Brand</a>
+		<span class="bg-[#0466c8] rounded-full w-8 h-8"></span>
+		<a href="#" class="font-medium text-xl">Wiki™ </a>
 		</div>
 		<div class="flex items-center space-x-2">
 		  <span>Not a member? </span>

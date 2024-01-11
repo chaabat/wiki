@@ -10,7 +10,7 @@ $result2 = $user->checkRoleAuteur();
 $wiki = new wikiController();
 $w = $wiki->displayAllWikis();
 $wiki->archiveWiki();
-
+$wikiData = $wiki->detailsWikis();
 ?>
 
 <!DOCTYPE html>
@@ -23,7 +23,7 @@ $wiki->archiveWiki();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-    <link rel="icon" href="img/wikipedia.png" type="image/png">
+    <link rel="icon" href="./public/img/logo.png" type="image/png">
     <title>Wiki™</title>
 </head>
 
@@ -32,21 +32,35 @@ $wiki->archiveWiki();
 
 <body class="bg-gray-100">
 
-    <?php include('./app/view/incFiles/navbar.php'); ?>
+<?php include('./app/view/incFiles/navbar.php'); ?>
+    <div class="flex flex-wrap mt-10 mx-auto md:px-12 flex-grow">
+        <div class="container mx-auto px-4 md:px-12">
+            <div class="flex gap-4">
+                <div class="flex justify-center bg-blue-400 cursor-pointer rounded-xl p-2 w-40 mb-5 shadow-lg wikisButton">
 
+                    <h2 class="text-lg font-bold ">Wikis</h2>
 
-    <section id="wikisContent" class="flex flex-wrap mx-auto md:px-12 flex-grow mt-4">
+                </div>
+                <div class="flex justify-center bg-blue-400 cursor-pointer  rounded-xl p-2 w-40 mb-5 shadow-lg categoriesButton">
+
+                    <h2 class="text-lg font-bold">Categories</h2>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <section id="wikisContent" class="flex flex-wrap mx-auto md:px-12 flex-grow">
         <div class="container mx-auto px-4 md:px-12">
             <?php
             if ($result) {
                 echo '
-            <a href="./app/view/admin/dashboard.php" class="flex  justify-center rounded-xl p-2 w-60 mb-5 shadow-lg bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <a href="./view/dashboard.php" class="flex justify-center rounded-xl p-2 w-60 mb-5 shadow-lg bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 <i class="bx bx-arrow-back mr-2 flex items-center"></i> Back to Your Account
             </a>
             ';
             } else if ($result2) {
                 echo '
-            <a href="./app/view/author/wikis.php" class="flex justify-center rounded-xl p-2 w-60 mb-5 shadow-lg bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <a href="./view/wikis.php" class="flex justify-center rounded-xl p-2 w-60 mb-5 shadow-lg bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 <i class="bx bx-arrow-back mr-2 flex items-center"></i> Back to Your Account
             </a>
             ';
@@ -56,7 +70,7 @@ $wiki->archiveWiki();
 
             <div class="flex flex-wrap -mx-1 lg:-mx-4">
                 <?php
-                if ($result2) {
+                if ($result2 || $result) {
                 } else {
                 ?>
                     <!-- Create Project Card -->
@@ -65,12 +79,12 @@ $wiki->archiveWiki();
                         <!-- Article -->
                         <article class="overflow-hidden rounded-lg shadow-lg">
                             <div class="group bg-gray-50   mt- py-16 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md ">
-                                <a data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="bg-gray-200 text-yellow-700 group-hover:text-gray-800 group-hover:smooth-hover flex w-20 h-20 rounded-full items-center justify-center" href="./app/view/authentification/register.php">
+                                <a data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="bg-gray-200 text-yellow-700 group-hover:text-gray-800 group-hover:smooth-hover flex w-20 h-20 rounded-full items-center justify-center" href="./view/register.php">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                                     </svg>
                                 </a>
-                                <a class="text-gray-600 group-hover:text-gray-800 group-hover:smooth-hover text-center" href="./app/view/authentification/register.php">
+                                <a class="text-gray-600 group-hover:text-gray-800 group-hover:smooth-hover text-center" href="#">
                                     Create wiki </a>
                             </div>
                         </article>
@@ -87,18 +101,19 @@ $wiki->archiveWiki();
                         $wiki = $wikiData['wiki'];
                         $category = $wikiData['category'];
                         $user = $wikiData['user'];
+                        $tags = $wikiData['tags'];
                     }
                 ?>
 
                     <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
                         <article class="overflow-hidden rounded-lg shadow-lg h-full
                 <?php
-                    $bgColors = ['bg-blue-200', 'bg-gray-300', 'bg-gray-200', 'bg-gray-100', 'bg-blue-100'];
+                    $bgColors = ['bg-gray-300', 'bg-gray-200', 'bg-gray-100', 'bg-blue-100'];
                     $randomIndex = array_rand($bgColors);
                     echo $bgColors[$randomIndex];
                 ?>
-        ">
-                            <div class="flex flex-col justify-between py-4 px-6 h-48">
+                         ">
+                            <div class="flex flex-col justify-between py-4 px-8 h-52">
                                 <p class="text-gray-700 mb-2">
                                     Categorie :
                                     <?php echo htmlspecialchars($category->getCategorie()); ?>
@@ -106,6 +121,19 @@ $wiki->archiveWiki();
                                 <h1 class="text-xl font-semibold mb-2">TITLE :
                                     <?php echo htmlspecialchars($wiki->getwiki()); ?>
                                 </h1>
+                                <div class="flex sm:rounded-lg p-1 gap-8 ml-2">
+                                    <?php foreach ($tags->getTag() as $onetag)
+                                        echo '
+                    <div class="flex justify-center justify-center w-10 p-1">
+
+                    <span class="inline-flex items-center font-medium rounded-lg text-sm px-4 py-1.5 text-center bg-blue-200 hover:bg-blue-400">
+                    ' . $onetag . '</span>
+                    </div>
+
+                    ';
+                                    ?>
+                                </div>
+
 
                                 <div class="flex justify-between">
                                     <div class="flex flex-col justify-between text-sm text-gray-600">
@@ -136,7 +164,7 @@ $wiki->archiveWiki();
                                             ';
                                         }
                                         ?>
-                                        <a href="./app/view/author/detailswiki.php" title="view details">
+                                        <a href="./app/view/author/detailswiki.php?detailswiki&wikiID=<?php echo $wiki->getwikiID(); ?>" title="view details">
                                             <svg xmlns="http://www.w3.org/2000/svg" alt="title" height="16" width="18" viewBox="0 0 576 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
                                                 <path fill="#dfa401" d="M288 80c-65.2 0-118.8 29.6-159.9 67.7C89.6 183.5 63 226 49.4 256c13.6 30 40.2 72.5 78.6 108.3C169.2 402.4 222.8 432 288 432s118.8-29.6 159.9-67.7C486.4 328.5 513 286 526.6 256c-13.6-30-40.2-72.5-78.6-108.3C406.8 109.6 353.2 80 288 80zM95.4 112.6C142.5 68.8 207.2 32 288 32s145.5 36.8 192.6 80.6c46.8 43.5 78.1 95.4 93 131.1c3.3 7.9 3.3 16.7 0 24.6c-14.9 35.7-46.2 87.7-93 131.1C433.5 443.2 368.8 480 288 480s-145.5-36.8-192.6-80.6C48.6 356 17.3 304 2.5 268.3c-3.3-7.9-3.3-16.7 0-24.6C17.3 208 48.6 156 95.4 112.6zM288 336c44.2 0 80-35.8 80-80s-35.8-80-80-80c-.7 0-1.3 0-2 0c1.3 5.1 2 10.5 2 16c0 35.3-28.7 64-64 64c-5.5 0-10.9-.7-16-2c0 .7 0 1.3 0 2c0 44.2 35.8 80 80 80zm0-208a128 128 0 1 1 0 256 128 128 0 1 1 0-256z" />
                                             </svg>
@@ -311,8 +339,50 @@ $wiki->archiveWiki();
 
 
 
-    <script src="./public/js/index.js">
+    <script>
+        var wikisContent = document.getElementById('wikisContent').innerHTML;
 
+        function loadContent(category) {
+            if (category === 'Wikis') {
+                document.getElementById('wikisContent').style.display = 'flex';
+                document.getElementById('categoriesContent').style.display = 'none';
+                document.querySelector('.categoriesButton').classList.remove('bg-blue-400');
+                document.querySelector('.wikisButton').classList.add('bg-blue-400');
+            } else if (category === 'Categories') {
+                document.getElementById('wikisContent').style.display = 'none';
+                document.getElementById('categoriesContent').style.display = 'flex';
+                document.querySelector('.wikisButton').classList.remove('bg-blue-400');
+                document.querySelector('.categoriesButton').classList.add('bg-blue-400');
+            }
+        }
+
+
+        document.querySelector('.categoriesButton').addEventListener('click', function() {
+            loadContent('Categories');
+        });
+
+        document.querySelector('.wikisButton').addEventListener('click', function() {
+            loadContent('Wikis');
+        });
+
+        loadContent('Wikis');
+
+        document.querySelectorAll('.editProjectButton').forEach(button => {
+            button.addEventListener('click', function() {
+                showEditProjectForm(button);
+            });
+        });
+
+
+        function showEditProjectForm(button) {
+            var editProjectForm = document.getElementById('authentication-modal');
+            if (editProjectForm) {
+                editProjectForm.querySelector('#editWikiId').value = button.dataset.projectId || '';
+                editProjectForm.querySelector('#editName').value = button.dataset.projectName || '';
+                editProjectForm.querySelector('#editdescription').value = button.dataset.projectDescription || '';
+
+            }
+        }
     </script>
 
 </body>
