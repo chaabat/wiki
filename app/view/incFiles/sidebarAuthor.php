@@ -29,7 +29,7 @@
                 
               
                 <li>
-                    <a href="./dashboard.php?deconn" class="flex flex-row hover:bg-[#03045e] items-center h-12 ">
+                    <a href="./home.php?deconn" class="flex flex-row hover:bg-[#03045e] items-center h-12 ">
                         <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><img class="h-8 sm:w-8 w-full mr-2" src="../../../public/img/se-deconnecter.png" alt=""></span>
                         <span class="text-lm font-bold  text-white">Logout</span>
                     </a>
