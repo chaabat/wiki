@@ -1,8 +1,8 @@
 <?php
-require_once('../controller/usercontroller.php');
-require_once('../controller/wikiController.php');
-require_once('../controller/tagController.php');
-require_once('../controller/categorieController.php');
+require_once('../../controller/usercontroller.php');
+require_once('../../controller/wikiController.php');
+require_once('../../controller/tagController.php');
+require_once('../../controller/categorieController.php');
 session_start();
 $user = new usercontroller();
 $result = $user->checkRoleAdmin();

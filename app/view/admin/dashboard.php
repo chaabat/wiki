@@ -34,7 +34,7 @@ $user->logout();
 
                 <div class="px-6 py-8 max-w-4xl mx-auto">
                     <div class="max-w-4xl mx-auto">
-                        <div class="bg-[#023e8a] rounded-3xl p-8 mb-5">
+                        <div class="bg-[#0466c8] rounded-3xl p-8 mb-5">
                             <h1 class="text-3xl font-bold mb-10 text-white">Welcome to your account, We are so happy to see you</h1>
 
                             <hr class="my-10 border border-white">

@@ -77,15 +77,15 @@ $cat->deleteCategorie();
         <!-- Content -->
 
 
-        <div class="flex-grow p-4 bg-gray-200">
+        <div class="flex-grow p-4 bg-[#caf0f8]">
 
 
             <div class="px-6 py-8 max-w-4xl mx-auto">
                 <div class="max-w-4xl mx-auto">
-                    <div class="bg-blue-200 rounded-3xl p-8 mb-5">
+                    <div class="bg-[#0466c8] rounded-3xl p-8 mb-5">
                         <h1 class="text-3xl font-bold mb-10">Categories</h1>
 
-                        <hr class="my-10 border border-blue-700">
+                        <hr class="my-10 border border-white">
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             <div class="group bg-gray-50 py-4 px-2 flex flex-col space-y-1 items-center cursor-pointer rounded-md ">

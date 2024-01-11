@@ -26,7 +26,7 @@ class usercontroller
                 header('Location: ../view/login.php');
                 exit();
             }
-            
+
 
             return $error;
         }
@@ -93,5 +93,4 @@ class usercontroller
             return true;
         }
     }
-
 }

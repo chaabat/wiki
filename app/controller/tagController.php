@@ -37,7 +37,7 @@ class tagController
 
     public function deletetag()
     {
-        if (isset($_GET['deletetag']) && isset($_GET['tagID']) ) {
+        if (isset($_GET['deletetag']) && isset($_GET['tagID'])) {
             $tagID = $_GET['tagID'];
             $tag = new tagModel();
             $tag->deletetag($tagID);
