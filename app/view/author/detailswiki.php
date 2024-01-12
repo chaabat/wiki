@@ -33,7 +33,7 @@ foreach ($wikiData as $wikiItem) {
     <title>Wiki™</title>
 </head>
 
-<!-- component -->
+
 <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
 
 <body class="bg-gray-100">
@@ -41,7 +41,7 @@ foreach ($wikiData as $wikiItem) {
     <div class="min-h-screen flex flex-col sm:flex-row bg-gray-100">
 
     <?php
-        // Check if the user has the role of an author
+ 
         if ($result2) {
             include('../incFiles/sidebarAuthor.php');
         }

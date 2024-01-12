@@ -22,7 +22,7 @@ $wikibycat = $wiki->WikisByCategory();
     <title>Wiki™</title>
 </head>
 
-<!-- component -->
+
 <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
 
 <body>
@@ -32,7 +32,7 @@ $wikibycat = $wiki->WikisByCategory();
     <?php include ('../incFiles/sidebar.php');?>
 
 
-        <!-- Content -->
+      
         <div class="flex-grow p-4 bg-[#caf0f8]">
 
 

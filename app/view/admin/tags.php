@@ -24,7 +24,6 @@ $tag->deletetag();
     <title>Wiki™</title>
 </head>
 
-<!-- component -->
 <link rel="stylesheet" href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" />
 
 <body>
@@ -34,12 +33,9 @@ $tag->deletetag();
     <?php include ('../incFiles/sidebar.php');?>
 
 
-        <!-- Main modal -->
         <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-md max-h-full">
-                <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow bg-blue-50">
-                    <!-- Modal header -->
                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-600">
                         <h3 class="text-lg font-semibold text-gray-900 text-black">
                             Create New Tag
@@ -51,7 +47,6 @@ $tag->deletetag();
                             <span class="sr-only">Close modal</span>
                         </button>
                     </div>
-                    <!-- Modal body -->
                     <form class="p-4 md:p-5" action="" method="post">
                         <div class="grid gap-4 mb-4 grid-cols-2">
                             <div class="col-span-2">
@@ -70,12 +65,9 @@ $tag->deletetag();
             </div>
         </div>
 
-        <!-- Main modal -->
         <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
             <div class="relative p-4 w-full max-w-md max-h-full">
-                <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow bg-blue-50">
-                    <!-- Modal header -->
                     <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-600">
                         <h3 class="text-xl font-semibold text-gray-900 text-black">
                             Update Tag
@@ -87,7 +79,7 @@ $tag->deletetag();
                             <span class="sr-only">Close modal</span>
                         </button>
                     </div>
-                    <!-- Modal body -->
+                
                     <div class="p-4 md:p-5">
                         <form class="space-y-4" action="" method="post">
                             <div class="col-span-2">
@@ -108,10 +100,6 @@ $tag->deletetag();
                 </div>
             </div>
         </div>
-
-
-        <!-- Content -->
-
 
         <div class="flex-grow p-4 bg-[#caf0f8]">
 
@@ -135,7 +123,7 @@ $tag->deletetag();
                                 <a class="text-gray-600 group-hover:text-gray-800 group-hover:smooth-hover text-center" href="#"><button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button">
                                         Create tag </button> </a>
                             </div>
-                            <!-- tag card  -->
+                      
                             <?php foreach ($tags as $t) : ?>
 
                                 <div class="flex flex-col items-center justify-around bg-white overflow-hidden shadow sm:rounded-lg h-full p-2">
@@ -158,7 +146,7 @@ $tag->deletetag();
 
                                     </div>
                                 </div>
-                                <!-- end card  -->
+                           
                             <?php endforeach; ?>
 
 

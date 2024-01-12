@@ -33,19 +33,7 @@
                   <span class="text-lm font-bold  text-white">Wikis</span>
               </a>
           </li>
-          <!-- <li>
-                    <a href="#" class="flex flex-row items-center h-12 ">
-                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><i class="bx bx-user"></i></span>
-                        <span class="text-lm font-bold  text-white">Profile</span>
-                    </a>
-                </li> -->
-          <!-- <li>
-                    <a href="#" class="flex flex-row items-center h-12 ">
-                        <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><i class="bx bx-bell"></i></span>
-                        <span class="text-lm font-bold  text-white">Notifications</span>
-                        <span class="ml-auto mr-6 text-sm bg-red-100 rounded-full px-3 py-px text-red-500">5</span>
-                    </a>
-                </li> -->
+          
           <li>
               <a href="./dashboard.php?deconn" class="flex flex-row hover:bg-[#03045e] items-center h-12 ">
                   <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"><img class="h-8 sm:w-8 w-full mr-2" src="../../../public/img/se-deconnecter.png" alt=""></span>

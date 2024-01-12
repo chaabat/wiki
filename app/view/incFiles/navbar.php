@@ -11,20 +11,18 @@
                 </svg>
             </button>
         </div>
-        <!-- Centered Search Bar -->
         <div class="flex items-center mx-auto lg:w-96">
             <input type="text" class="search-input lg:w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-500" placeholder="Search wikis...">
             <div class="lg:ml-8 lg:absolute lg:inset-y-0 lg:right-0 flex items-center pr-3">
                 <?php
                 if (!$result && !$result2) {
-                    // Display "Sign In" and "Sign Up" only if the user is not an author or admin
                     echo '<a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-xl transition duration-200" href="./app/view/authentification/login.php">Sign In</a>';
                     echo '<a class="hidden lg:inline-block py-2 px-6 bg-[#caf0f8]  text-sm text-black font-bold rounded-xl transition duration-200" href="./app/view/authentification/register.php">Sign up</a>';
                 } elseif ($result) {
-                    // Display additional links or actions for admin
+                    
                     echo '<a href="./app/view/admin/dashboard.php" class="text-black bg-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Dashboard</a>';
                 } elseif ($result2) {
-                    // Display additional links or actions for author
+                   
                     echo '<a href="./app/view/author/wikis.php" class="text-black bg-white focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 ">Your Wikis</a>';
                 }
                 ?>
@@ -34,7 +32,6 @@
     <div class="navbar-menu relative z-50 hidden">
         <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
         <nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
-            <!-- Sidebar content -->
             <div class="flex items-center mb-8">
                 <a class="mr-auto text-3xl font-bold leading-none" href="#">
                     <img class="h-[100px]" src="./public/img/wiki.png" alt="">

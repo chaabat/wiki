@@ -56,7 +56,6 @@ $m = $user->login();
 		  </a>
 		</div>
 	  </div>
-	  <!-- Login box -->
 	  <form action="" method="post">
 					  
 	  <div class="flex flex-1 flex-col  justify-center space-y-5 max-w-md">
