@@ -133,7 +133,7 @@ class wikiModel
                 $wikis[] = $wikiData;
             }
         } catch (PDOException $e) {
-            // Handle the exception, log, or rethrow as needed
+            
             echo "Error: " . $e->getMessage();
         }
 
