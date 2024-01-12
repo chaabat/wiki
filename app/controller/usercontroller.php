@@ -49,7 +49,7 @@ class usercontroller
                     header('Location: ../admin/dashboard.php');
                     exit();
                 } elseif ($_SESSION['role'] === 'auteur') {
-                    header('Location: ../author/home.php');
+                    header('Location: ../author/wikis.php');
                     exit();
                 }
             } else {

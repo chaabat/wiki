@@ -209,6 +209,7 @@ class wikiModel
 
 
 
+
     public function detailsWiki($wikiID)
     {
         $sql = "SELECT w.wikiID, w.title,w.content, w.creationDate, c.nomCategorie, u.nom, u.prenom, GROUP_CONCAT(t.nomTag) as tagnames

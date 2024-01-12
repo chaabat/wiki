@@ -40,7 +40,12 @@ foreach ($wikiData as $wikiItem) {
 
     <div class="min-h-screen flex flex-col sm:flex-row bg-gray-100">
 
-       <?php include ('../incFiles/sidebarAuthor.php');?>
+    <?php
+        // Check if the user has the role of an author
+        if ($result2) {
+            include('../incFiles/sidebarAuthor.php');
+        }
+        ?>
 
 
         <div class="flex justify-center items-center w-full">

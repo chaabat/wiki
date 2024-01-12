@@ -85,6 +85,8 @@ class wikiController
         }
     }
 
+   
+
     public function detailsWikis()
     {
 
