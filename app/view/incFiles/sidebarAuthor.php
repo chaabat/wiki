@@ -6,7 +6,7 @@
 
             <ul class="flex flex-col py-4">
                 <li>
-                    <a href="dashboard.php" class="flex flex-row hover:bg-[#03045e] hover:text-black  items-center h-12 ">
+                    <a href="home.php" class="flex flex-row hover:bg-[#03045e] hover:text-black  items-center h-12 ">
                         <span class="inline-flex items-center justify-center h-12 w-12 text-lg text-white-400"> <img class="h-8 sm:w-8 w-full mr-2" src="../../../public/img/dashbord.png" alt="">
 </span>
                         <span class="text-lm font-bold  text-white">Home</span>

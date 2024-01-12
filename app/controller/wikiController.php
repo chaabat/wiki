@@ -87,14 +87,13 @@ class wikiController
 
     public function detailsWikis()
     {
-        
+
         if (isset($_GET['detailswiki']) && isset($_GET['wikiID'])) {
             $wikiID = $_GET['wikiID'];
             // var_dump($wikiID);
             // die("");
             $wiki = new wikiModel();
             return $wiki->detailsWiki($wikiID);
-            
         }
     }
 
@@ -102,16 +101,22 @@ class wikiController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['keyword'])) {
             $keyword = $_POST['keyword'];
-    
+
             $wiki = new wikiModel();
             $searchResults = $wiki->searchWiki($keyword);
-    
+
             header('Content-Type: application/json');
             echo json_encode($searchResults);
         }
     }
+
+    public function WikisByCategory()
+    {
+        $wiki = new wikiModel();
+        return $wiki->WikisByCategory();
     }
-    
-    $wikisearch = new wikiController();
-    $wikisearch->searchWikis();
-?>
+ 
+}
+$wikisearch = new wikiController();
+$wikisearch->searchWikis();
+

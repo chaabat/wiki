@@ -83,7 +83,7 @@ $cat->deleteCategorie();
             <div class="px-6 py-8 max-w-4xl mx-auto">
                 <div class="max-w-4xl mx-auto">
                     <div class="bg-[#0466c8] rounded-3xl p-8 mb-5">
-                        <h1 class="text-3xl font-bold mb-10">Categories</h1>
+                        <h1 class="text-3xl font-bold mb-10 text-white">Categories</h1>
 
                         <hr class="my-10 border border-white">
 

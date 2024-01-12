@@ -1,4 +1,6 @@
 <?php
+require_once(__DIR__ . '/../config/database.php');
+
 class wikiModel
 {
 
@@ -270,5 +272,19 @@ class wikiModel
         $stmt->execute();
 
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function WikisByCategory(){
+        $sql = "SELECT c.nomCategorie, COUNT(*) AS category_count
+        FROM wiki w
+        JOIN categorie c ON w.categorieID = c.categorieID
+        GROUP BY c.nomCategorie;
+        ";
+        $stmt = $this->conn->prepare($sql);
+        return $stmt->execute();
+
+
+
     }
 }
