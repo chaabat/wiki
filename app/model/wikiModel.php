@@ -294,18 +294,7 @@ class wikiModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getMostUsedCategory()
-    {
-        $sql = " SELECT c.nomCategorie, COUNT(w.categorieID) as categoryCount
-        FROM wiki w
-        JOIN categorie c ON w.categorieID = c.categorieID
-        GROUP BY w.categorieID
-        ORDER BY categoryCount DESC
-        LIMIT 1";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+  
 
     public function getTotalCategories()
     {
@@ -331,18 +320,7 @@ class wikiModel
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function getMostPostAuthor()
-    {
-        $sql = "SELECT u.nom, COUNT(w.iduser) as wikiCount
-        FROM wiki w
-        JOIN user u ON w.iduser = u.iduser
-        GROUP BY w.iduser
-        ORDER BY wikiCount DESC
-        LIMIT 1";
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
+   
 
     public function editWiki($wikiID, $categorieID)
     {

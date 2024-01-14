@@ -130,22 +130,14 @@ class wikiController
         }
     }
 
-    public function getMostPostAuthor()
-    {
-        $wiki = new wikiModel();
-        return $wiki->getMostPostAuthor();
-    }
+
 
     public function getTotalWikis()
     {
         $wiki = new wikiModel();
         return $wiki->getTotalWikis();
     }
-    public function getMostUsedCategory()
-    {
-        $wiki = new wikiModel();
-        return $wiki->getMostUsedCategory();
-    }
+    
     public function getTotalCategories()
     {
         $wiki = new wikiModel();
