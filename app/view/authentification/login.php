@@ -29,7 +29,7 @@ $m = $user->login();
 	  <div class="flex items-center justify-start space-x-3">
 	  <span class="bg-[#caf0f8] rounded-full w-8 h-8"></span>
 
-		<a href="#" class="font-medium text-xl">Wiki™ </a>
+		<a href="../../../index.php" class="font-medium text-xl">Wiki™ </a>
 	  </div>
 	  <div class='space-y-5'>
 		<h1 class="lg:text-3xl xl:text-5xl xl:leading-snug font-extrabold text-white">Enter your account and create new
