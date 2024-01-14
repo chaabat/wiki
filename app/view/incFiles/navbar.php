@@ -11,7 +11,7 @@
                 </svg>
             </button>
         </div>
-        <!-- Centered Search Bar -->
+      
         <div class="flex items-center mx-auto lg:w-96">
             <input type="text" class="search-input lg:w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-500" placeholder="Search wikis...">
             <div class="lg:ml-8 lg:absolute lg:inset-y-0 lg:right-0 flex items-center pr-3">
@@ -34,7 +34,7 @@
     <div class="navbar-menu relative z-50 hidden">
         <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
         <nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
-            <!-- Sidebar content -->
+          
             <div class="flex items-center mb-8">
                 <a class="mr-auto text-3xl font-bold leading-none" href="#">
                     <img class="h-[100px]" src="./public/img/wiki.png" alt="">

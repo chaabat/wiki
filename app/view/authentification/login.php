@@ -18,13 +18,13 @@ $m = $user->login();
 
 <body class="bg-[#caf0f8]">
 
-<!-- Example -->
+ 
 <div class="flex min-h-screen">
 
-  <!-- Container -->
+ 
   <div class="flex flex-row w-full">
 
-	<!-- Sidebar -->
+	 
 	<div class='hidden lg:flex flex-col justify-between bg-[#023e8a] lg:p-8 xl:p-12 lg:max-w-sm xl:max-w-lg'>
 	  <div class="flex items-center justify-start space-x-3">
 	  <span class="bg-[#caf0f8] rounded-full w-8 h-8"></span>
@@ -42,7 +42,7 @@ $m = $user->login();
 	  <p class="font-medium">© 2024 Wiki</p>
 	</div>
 
-	<!-- Login -->
+ 
 	<div class="flex flex-1 flex-col items-center justify-center px-10 relative">
 	  <div class="flex lg:hidden justify-between items-center w-full py-4">
 		<div class="flex items-center justify-start space-x-3">

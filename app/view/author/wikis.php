@@ -50,17 +50,17 @@ $wikiData = $wiki->detailsWikis();
         
         ?>
 
-        <!-- Content -->
+    
         <div class="flex-grow p-4">
 
 
             <section class="flex flex-wrap mt-20 mx-auto md:px-12 flex-grow">
-                <!-- Main modal -->
+              
                 <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative p-4 w-full max-w-md max-h-full">
-                        <!-- Modal content -->
+                  
                         <div class="relative bg-white rounded-lg shadow bg-blue-50">
-                            <!-- Modal header -->
+                 
                             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-600">
                                 <h3 class="text-lg font-semibold text-gray-900 text-black">
                                     Create New Wiki
@@ -72,7 +72,7 @@ $wikiData = $wiki->detailsWikis();
                                     <span class="sr-only">Close modal</span>
                                 </button>
                             </div>
-                            <!-- Modal body -->
+                       
                             <form class="p-4 md:p-5" action="" method="post">
                                 <div class="grid gap-4 mb-4 grid-cols-2">
                                     <div class="col-span-2">
@@ -121,12 +121,12 @@ $wikiData = $wiki->detailsWikis();
                     </div>
                 </div>
 
-                <!-- Main modal -->
+               
                 <div id="authentication-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                     <div class="relative p-4 w-full max-w-md max-h-full">
-                        <!-- Modal content -->
+                      
                         <div class="relative bg-white rounded-lg shadow bg-blue-50">
-                            <!-- Modal header -->
+                     
                             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-600">
                                 <h3 class="text-xl font-semibold text-gray-900 text-black">
                                     Update Wiki
@@ -138,7 +138,7 @@ $wikiData = $wiki->detailsWikis();
                                     <span class="sr-only">Close modal</span>
                                 </button>
                             </div>
-                            <!-- Modal body -->
+                      
                             <div class="p-4 md:p-5">
                                 <form class="p-4 md:p-5" action="" method="post">
                                     <div class="grid gap-4 mb-4 grid-cols-2">
@@ -153,7 +153,7 @@ $wikiData = $wiki->detailsWikis();
                                                 foreach ($cats as $category) {
                                                     echo "<option value='{$category->getCategorieID()}'>{$category->getCategorie()}</option>";
                                                 }
-                                                // die("");
+                                              
 
                                                 ?>
                                             </select>
@@ -165,7 +165,7 @@ $wikiData = $wiki->detailsWikis();
                                                 <?php
 
                                                 foreach ($tags as $tag) {
-                                                    // var_dump($tags);
+                                              
                                                     echo "<option value='{$tag->getTagID()}'>{$tag->getTag()}</option>";
                                                 }
                                                 ?>
@@ -203,10 +203,10 @@ $wikiData = $wiki->detailsWikis();
                     <div class="flex flex-wrap -mx-1 lg:-mx-4">
 
 
-                        <!-- Create Project Card -->
+                 
                         <div class="my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
 
-                            <!-- Article -->
+                    
                             <article class="overflow-hidden rounded-lg shadow-lg">
                                 <div class="group bg-gray-50 py-14 px-4 flex flex-col space-y-2 items-center cursor-pointer rounded-md ">
                                     <a data-modal-target="crud-modal" data-modal-toggle="crud-modal" class="bg-gray-200 text-yellow-700 group-hover:text-gray-800 group-hover:smooth-hover flex w-20 h-20 rounded-full items-center justify-center" href="#">
@@ -218,10 +218,10 @@ $wikiData = $wiki->detailsWikis();
                                             Create wiki </button> </a>
                                 </div>
                             </article>
-                            <!-- END Article -->
+                   
 
                         </div>
-                        <!-- END Column -->
+                    
                         <?php
 
                         foreach ($w as $wikiData) : {
@@ -311,296 +311,7 @@ $wikiData = $wiki->detailsWikis();
             </section>
 
 
-            <script>
-                const selectedUpdateTagIds = [];
-                const selectedUpdateTagNames = [];
-
-                function handleTagSelection(selectElement) {
-                    const selectedTagsContainer = document.getElementById('selectedTagsContainer');
-                    const selectedTagIdsInput = document.getElementById('selectedTagIdsInput');
-
-                    // Check if an option is selected
-                    if (selectElement.selectedIndex !== -1) {
-                        const selectedTagName = selectElement.options[selectElement.selectedIndex].text;
-                        const selectedTagId = selectElement.value;
-
-                        if (selectedTagId && !document.getElementById(`selectedTag_${selectedTagId}`)) {
-                            // Add the selected tag to the container
-                            const tagDiv = document.createElement('div');
-                            tagDiv.id = `selectedTag_${selectedTagId}`;
-                            // console.log(tagDiv.id);
-
-                            tagDiv.className = 'flex items-center space-x-2 bg-blue-200 rounded-lg p-2 mb-2';
-
-                            const tagText = document.createElement('span');
-                            tagText.textContent = selectedTagName;
-
-                            const removeIcon = document.createElement('i');
-                            removeIcon.className = 'bx bx-x cursor-pointer';
-
-                            removeIcon.addEventListener('click', function() {
-                                selectedTagsContainer.removeChild(tagDiv);
-                                updateHiddenInput();
-                            });
-
-                            tagDiv.appendChild(tagText);
-                            tagDiv.appendChild(removeIcon);
-
-                            selectedTagsContainer.appendChild(tagDiv);
-                            updateHiddenInput();
-                        }
-
-                        selectElement.value = '';
-                    }
-                }
-
-                function updateHiddenInput() {
-                    const selectedTagsContainer = document.getElementById('selectedTagsContainer');
-                    const selectedTagDivs = selectedTagsContainer.querySelectorAll('div');
-                    const selectedTagIds = Array.from(selectedTagDivs).map((div) => div.id.replace('selectedTag_', ''));
-                    selectedTagIdsInput.value = JSON.stringify(selectedTagIds);
-                }
-
-                ////////////////////////////////////////////////////////////////////////
-                function updateSelectedTagsDisplay() {
-                    const selectedUpdateTagsContainer = document.getElementById('selectedUpdateTagsContainer');
-                    const updateHiddenUpdateInput = document.getElementById('updateHiddenUpdateInput');
-
-                    // Clear the container
-                    selectedUpdateTagsContainer.innerHTML = '';
-
-                    // selectedUpdateTagNames.forEach(tagId => {
-                    //     if (tagId !== null && tagId !== undefined) {
-                    //         const tagDiv = document.createElement('div');
-                    //         tagDiv.id = `selectedUpdateTag_${tagId}`;
-                    //         console.log(tagDiv.id);
-
-                    //         tagDiv.className = 'flex items-center space-x-2 bg-blue-200 rounded-lg p-2 mb-2';
-
-                    //         const tagText = document.createElement('span');
-                    //         tagText.textContent = tagId;
-
-                    //         const removeIcon = document.createElement('i');
-                    //         removeIcon.className = 'bx bx-x cursor-pointer';
-
-                    //         removeIcon.addEventListener('click', function() {
-                    //             // Remove the tag directly within the updateSelectedTagsDisplay function
-                    //             tagDiv.remove();
-
-                    //             // Update the array by removing the tag ID
-                    //             const index = selectedUpdateTagIds.indexOf(tagId);
-                    //             if (index !== -1) {
-                    //                 selectedUpdateTagIds.splice(index, 1);
-                    //                 // Update the hidden input with the array of tag IDs
-                    //                 updateHiddenUpdateInput.value = JSON.stringify(selectedUpdateTagIds);
-                    //                 console.log(updateHiddenUpdateInput.value);
-                    //             }
-                    //         });
-
-                    //         tagDiv.appendChild(tagText);
-                    //         tagDiv.appendChild(removeIcon);
-
-                    //         selectedUpdateTagsContainer.appendChild(tagDiv);
-                    //     }
-                    // });
-
-                    selectedUpdateTagNames.forEach((tagName, index) => {
-                        if (tagName !== null && tagName !== undefined) {
-                            const tagId = selectedUpdateTagIds[index];
-
-                            const tagDiv = document.createElement('div');
-                            tagDiv.id = `selectedUpdateTag_${tagId}`;
-                            console.log(tagDiv.id);
-
-                            tagDiv.className = 'flex items-center space-x-2 bg-blue-200 rounded-lg p-2 mb-2';
-
-                            const tagText = document.createElement('span');
-                            tagText.textContent = tagName;
-
-                            const removeIcon = document.createElement('i');
-                            removeIcon.className = 'bx bx-x cursor-pointer';
-
-                            removeIcon.addEventListener('click', function() {
-                                // Remove the tag directly within the updateSelectedTagsDisplay function
-                                tagDiv.remove();
-
-                                // Update the array by removing the tag ID
-                                const index = selectedUpdateTagIds.indexOf(tagId);
-                                if (index !== -1) {
-                                    selectedUpdateTagIds.splice(index, 1);
-                                    // Update the hidden input with the array of tag IDs
-                                    updateHiddenUpdateInput.value = JSON.stringify(selectedUpdateTagIds);
-                                    console.log(updateHiddenUpdateInput.value);
-                                }
-                            });
-
-                            tagDiv.appendChild(tagText);
-                            tagDiv.appendChild(removeIcon);
-
-                            selectedUpdateTagsContainer.appendChild(tagDiv);
-                        }
-                    });
-                    testupdateHiddenUpdateInput();
-
-                }
-
-                // function handleUpdateTagSelection(selectElement) {
-                //     const selectedUpdateTagsContainer = document.getElementById('selectedUpdateTagsContainer');
-
-                //     // Check if an option is selected
-                //     if (selectElement.selectedIndex !== -1) {
-                //         const selectedTagName = selectElement.options[selectElement.selectedIndex].text;
-                //         const selectedTagId = selectElement.value;
-
-                //         if (selectedTagId && !document.getElementById(`selectedUpdateTag_${selectedTagId}`)) {
-                //             // Add the selected tag to the container
-                //             const tagDiv = document.createElement('div');
-                //             tagDiv.id = `selectedUpdateTag_${selectedTagId}`;
-                //             tagDiv.className = 'flex items-center space-x-2 bg-blue-200 rounded-lg p-2 mb-2';
-                //             tagDiv.setAttribute('data-tag-id', selectedTagId); // Store tag ID as data attribute
-
-                //             const tagText = document.createElement('span');
-                //             tagText.textContent = selectedTagName;
-
-                //             const removeIcon = document.createElement('i');
-                //             removeIcon.className = 'bx bx-x cursor-pointer';
-
-                //             removeIcon.addEventListener('click', function() {
-                //                 handleTagRemoval(tagDiv);
-                //             });
-
-                //             tagDiv.appendChild(tagText);
-                //             tagDiv.appendChild(removeIcon);
-
-                //             selectedUpdateTagsContainer.appendChild(tagDiv);
-
-                //             // Update the array here
-                //             selectedUpdateTagIds.push(selectedTagId);
-                //             testupdateHiddenUpdateInput();
-                //         }
-
-                //         selectElement.value = '';
-                //     }
-                // }
-
-                function handleUpdateTagSelection(selectElement) {
-                    const selectedUpdateTagsContainer = document.getElementById('selectedUpdateTagsContainer');
-
-                    // Check if an option is selected
-                    if (selectElement.selectedIndex !== -1) {
-                        const selectedTagName = selectElement.options[selectElement.selectedIndex].text;
-                        const selectedTagId = selectElement.value;
-
-                        if (selectedTagId && !document.getElementById(`selectedUpdateTag_${selectedTagId}`)) {
-                            // Add the selected tag to the container
-                            const tagDiv = document.createElement('div');
-                            tagDiv.id = `selectedUpdateTag_${selectedTagId}`;
-                            tagDiv.className = 'flex items-center space-x-2 bg-blue-200 rounded-lg p-2 mb-2';
-                            tagDiv.setAttribute('data-tag-id', selectedTagId); // Store tag ID as data attribute
-
-                            const tagText = document.createElement('span');
-                            tagText.textContent = selectedTagName; // Display the tag name instead of the tag ID
-
-                            const removeIcon = document.createElement('i');
-                            removeIcon.className = 'bx bx-x cursor-pointer';
-
-                            removeIcon.addEventListener('click', function() {
-                                handleTagRemoval(tagDiv);
-                            });
-
-                            tagDiv.appendChild(tagText);
-                            tagDiv.appendChild(removeIcon);
-
-                            selectedUpdateTagsContainer.appendChild(tagDiv);
-
-                            // Update the array here
-                            selectedUpdateTagIds.push(selectedTagId);
-                            testupdateHiddenUpdateInput();
-                        }
-
-                        selectElement.value = '';
-                    }
-                }
-
-                function handleTagRemoval(tagDiv) {
-                    const selectedUpdateTagsContainer = document.getElementById('selectedUpdateTagsContainer');
-                    const tagId = tagDiv.getAttribute('data-tag-id');
-
-                    selectedUpdateTagsContainer.removeChild(tagDiv);
-
-                    // Update the array by removing the tag ID
-                    const index = selectedUpdateTagIds.indexOf(tagId);
-                    if (index !== -1) {
-                        selectedUpdateTagIds.splice(index, 1);
-                        testupdateHiddenUpdateInput();
-                    }
-                }
-
-                document.addEventListener('DOMContentLoaded', function() {
-                    document.querySelectorAll('.editButton').forEach(button => {
-                        button.addEventListener('click', function() {
-                            showEditWikiForm(button);
-                        });
-                    });
-
-                    const tagSelectUpdate = document.getElementById('updateWikiTags');
-                    tagSelectUpdate.addEventListener('change', function() {
-                        handleUpdateTagSelection(tagSelectUpdate);
-                    });
-
-                    // Initialize selected tags display
-                    updateSelectedTagsDisplay();
-                });
-
-                function showEditWikiForm(button) {
-                    var editWikiForm = document.getElementById('authentication-modal');
-                    if (editWikiForm) {
-                        const wikiId = button.dataset.wikiId;
-                        const wikiTitle = button.dataset.wikiTitle;
-                        const wikiDescription = button.dataset.wikiDescription;
-                        const wikiCategory = button.dataset.wikiCategory;
-                        const wikiTags = JSON.parse(button.dataset.wikiTags);
-                        const TagsIds = JSON.parse(button.dataset.tagId);
-
-
-                        editWikiForm.querySelector('#editwikiId').value = wikiId;
-                        editWikiForm.querySelector('#updateWikiTitle').value = wikiTitle;
-                        editWikiForm.querySelector('#updateWikiDescription').value = wikiDescription;
-                        editWikiForm.querySelector('#updateWikiCategory').value = wikiCategory;
-
-                        // Clear existing array
-                        selectedUpdateTagIds.length = 0;
-                        selectedUpdateTagNames.length = 0;
-
-                        // TagsIds.forEach(tagId => {
-                        //     selectedUpdateTagIds.push(tagId);
-                        // });
-
-                        TagsIds.forEach((tagId, index) => {
-                            selectedUpdateTagIds.push(tagId);
-
-                            // Check if the corresponding tag name exists
-                            const tagName = wikiTags[index] || 'Unknown Tag';
-                            selectedUpdateTagNames.push(tagName);
-                        });
-
-                        console.log(selectedUpdateTagIds);
-
-                        updateSelectedTagsDisplay();
-                        testupdateHiddenUpdateInput();
-                    }
-                }
-
-                function testupdateHiddenUpdateInput() {
-                    const selectedUpdateTagsContainer = document.getElementById('selectedUpdateTagsContainer');
-                    const updateHiddenUpdateInput = document.getElementById('updateHiddenUpdateInput');
-                    if (updateHiddenUpdateInput) {
-                        updateHiddenUpdateInput.value = JSON.stringify(selectedUpdateTagIds);
-                        console.log(updateHiddenUpdateInput.value);
-                    }
-
-                }
-            </script>
+            <script src="../../../public//js/wiki.js">            </script>
 
 
 

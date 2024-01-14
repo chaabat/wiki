@@ -17,7 +17,7 @@ $err =$user->Register();
 <body >
     <section>
 
-        <!-- component -->
+ 
 
         <div class="min-h-screen bg-[#caf0f8] py-6 flex flex-col justify-center sm:py-12" id="signform">
             <div class="relative py-3 sm:max-w-xl sm:mx-auto">
