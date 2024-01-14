@@ -1,7 +1,5 @@
 <?php
 require_once(__DIR__ . '/../model/wikiModel.php');
-require_once(__DIR__ . '/../config/database.php');
-
 
 class wikiController
 {
@@ -10,31 +8,23 @@ class wikiController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['addwiki'])) {
             $Wiki = new WikiModel();
-
             $categoryID = (int)$_POST['categorieID'];
             $iduser = $_SESSION['iduser'];
-
             $Wiki->setwiki($_POST['title']);
             $Wiki->setContent($_POST['content']);
             $Wiki->setCreationDate(date('Y-m-d H:i:s'));
-
-
             // var_dump($iduser, $categoryID, $_POST['title'], $_POST['content'], $_POST['selectedTagIds']);
             // die("whyyy");
             $wikiID = $Wiki->addWiki($iduser, $categoryID);
             if ($wikiID !== false) {
+                //     var_dump($_POST['selectedTagIds']);
+                // die('test');
                 if (!empty($_POST['selectedTagIds'])) {
                     $tagIDs = json_decode($_POST['selectedTagIds'], true);
-
-
-
-                    // var_dump($tagIDs);
-
                     foreach ($tagIDs as $tagID) {
                         $Wiki->addWikiTag($wikiID, $tagID);
                     }
                 }
-
                 header('Location: wikis.php');
                 exit;
             } else {
@@ -42,6 +32,37 @@ class wikiController
             }
         }
     }
+    public function EditWikis()
+    {
+        if (isset($_POST['editwiki']) && isset($_POST['wikiID'])) {
+            $Wiki = new WikiModel();
+            $wikiID = $_POST['wikiID'];
+            $categoryID = (int)$_POST['updateWikiCategory'];
+            $Wiki->setwiki($_POST['updateWikiTitle']);
+            $Wiki->setContent($_POST['updateWikiDescription']);
+            $Wiki->setCreationDate(date('Y-m-d H:i:s'));
+            $Wiki->editWiki($wikiID, $categoryID);
+            $Wiki->deleteWikiTag($wikiID);
+    
+            if (!empty($_POST['updateHiddenUpdateInput'])) {
+                $tagIDs = json_decode($_POST['updateHiddenUpdateInput'], true);
+    
+                // Remove empty values from the array
+                $tagIDs = array_filter($tagIDs);
+    
+                foreach ($tagIDs as $tagID) {
+                    $Wiki->editWikiTag($wikiID, $tagID);
+                }
+            }
+            header('Location: wikis.php');
+            exit;
+        }
+    }
+    
+    
+
+
+
 
     public function DisplayWikis()
     {
@@ -81,11 +102,8 @@ class wikiController
             $wiki = new wikiModel();
             $wiki->archiveWiki($wikiID);
             header('Location: index.php');
-            exit();
         }
     }
-
-   
 
     public function detailsWikis()
     {
@@ -103,22 +121,57 @@ class wikiController
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['keyword'])) {
             $keyword = $_POST['keyword'];
-        
+
             $wiki = new wikiModel();
             $searchResults = $wiki->searchWiki($keyword);
-        
+
             header('Content-Type: application/json');
             echo json_encode($searchResults);
         }
     }
 
-    public function WikisByCategory()
+    public function getMostPostAuthor()
     {
         $wiki = new wikiModel();
-        return $wiki->WikisByCategory();
+        return $wiki->getMostPostAuthor();
     }
- 
+
+    public function getTotalWikis()
+    {
+        $wiki = new wikiModel();
+        return $wiki->getTotalWikis();
+    }
+    public function getMostUsedCategory()
+    {
+        $wiki = new wikiModel();
+        return $wiki->getMostUsedCategory();
+    }
+    public function getTotalCategories()
+    {
+        $wiki = new wikiModel();
+        return $wiki->getTotalCategories();
+    }
+    public function getTotalTags()
+    {
+        $wiki = new wikiModel();
+        return $wiki->getTotalTags();
+    }
+    public function getTotalAuthors()
+    {
+        $wiki = new wikiModel();
+        return $wiki->getTotalAuthors();
+    }
+
+    public function redirectDetails()
+    {
+        $source = isset($_GET['source']) ? $_GET['source'] : '';
+        if ($source === 'index') {
+            return false;
+        } elseif ($source === 'wikis') {
+            return true;
+        }
+    }
 }
+
 $wikisearch = new wikiController();
 $wikisearch->searchWikis();
-

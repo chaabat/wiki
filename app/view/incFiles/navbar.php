@@ -11,11 +11,13 @@
                 </svg>
             </button>
         </div>
+        <!-- Centered Search Bar -->
         <div class="flex items-center mx-auto lg:w-96">
             <input type="text" class="search-input lg:w-full border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring focus:border-blue-500" placeholder="Search wikis...">
             <div class="lg:ml-8 lg:absolute lg:inset-y-0 lg:right-0 flex items-center pr-3">
                 <?php
                 if (!$result && !$result2) {
+                    // Display "Sign In" and "Sign Up" only if the user is not an author or admin
                     echo '<a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold rounded-xl transition duration-200" href="./app/view/authentification/login.php">Sign In</a>';
                     echo '<a class="hidden lg:inline-block py-2 px-6 bg-[#caf0f8]  text-sm text-black font-bold rounded-xl transition duration-200" href="./app/view/authentification/register.php">Sign up</a>';
                 } elseif ($result) {
@@ -32,6 +34,7 @@
     <div class="navbar-menu relative z-50 hidden">
         <div class="navbar-backdrop fixed inset-0 bg-gray-800 opacity-25"></div>
         <nav class="fixed top-0 left-0 bottom-0 flex flex-col w-5/6 max-w-sm py-6 px-6 bg-white border-r overflow-y-auto">
+            <!-- Sidebar content -->
             <div class="flex items-center mb-8">
                 <a class="mr-auto text-3xl font-bold leading-none" href="#">
                     <img class="h-[100px]" src="./public/img/wiki.png" alt="">
@@ -45,8 +48,8 @@
 
             <div class="mt-auto">
                 <div class="pt-6">
-                    <a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl" href="/../authentification/login.php">Sign in</a>
-                    <a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl" href="/../authentification/registre.php">Sign Up</a>
+                    <a class="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-gray-50 hover:bg-gray-100 rounded-xl"  href="./app/view/authentificatio">Sign in</a>
+                    <a class="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-blue-600 hover:bg-blue-700  rounded-xl" href="./app/view/authentification/registre.php">Sign Up</a>
                 </div>
 
                 <p class="my-4 text-xs text-center text-gray-400">

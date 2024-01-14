@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../config/database.php');
+ require_once(__DIR__ . '/../config/database.php');
 
 class wikiModel
 {
@@ -91,7 +91,7 @@ class wikiModel
         $wikis = [];
 
         try {
-            $sql = "SELECT w.wikiID, w.title, w.creationDate, c.nomCategorie, u.nom, u.prenom, GROUP_CONCAT(t.nomTag) as tagnames
+            $sql = "SELECT w.wikiID, w.title,w.content, w.creationDate,c.categorieID, c.nomCategorie, u.nom, u.prenom,GROUP_CONCAT(t.tagID) as tagIDs, GROUP_CONCAT(t.nomTag) as tagnames
                     FROM wiki w
                     LEFT JOIN categorie c ON w.categorieID = c.categorieID
                     LEFT JOIN user u ON w.iduser = u.iduser
@@ -111,9 +111,11 @@ class wikiModel
                 $wiki = new wikiModel();
                 $wiki->setwikiID($wi['wikiID']);
                 $wiki->setwiki($wi['title']);
+                $wiki->setContent($wi['content']);
                 $wiki->setCreationDate($wi['creationDate']);
 
                 $cat = new CategorieModel();
+                $cat->setCategorieID($wi['categorieID']);
                 $cat->setCategorie($wi['nomCategorie']);
 
                 $user = new UserModel();
@@ -122,18 +124,22 @@ class wikiModel
 
                 $tagNames = explode(',', $wi['tagnames']);
                 $tags = array_map('trim', $tagNames);
+                $tagIDs = explode(',', $wi['tagIDs']);
+                $idsTags = array_map('trim', $tagIDs);
                 $tag = new tagModel();
                 $tag->setTag($tags);
+                $tag->setTagID($idsTags);
+
                 $wikiData = [
                     'wiki' => $wiki,
                     'category' => $cat,
                     'user' => $user,
                     'tags' => $tag,
+                    'idsTags' => $idsTags,
                 ];
                 $wikis[] = $wikiData;
             }
         } catch (PDOException $e) {
-            
             echo "Error: " . $e->getMessage();
         }
 
@@ -143,7 +149,7 @@ class wikiModel
 
     public function displayAllWikis()
     {
-        $sql = "SELECT w.wikiID, w.title, w.creationDate, c.nomCategorie, u.nom, u.prenom, GROUP_CONCAT(t.nomTag) as tagnames
+        $sql = "SELECT w.wikiID, w.title, w.creationDate,c.categorieID, c.nomCategorie, u.nom, u.prenom,t.tagID, GROUP_CONCAT(t.nomTag) as tagnames
                 FROM wiki w
                 LEFT JOIN categorie c ON w.categorieID = c.categorieID
                 LEFT JOIN user u ON w.iduser = u.iduser
@@ -165,6 +171,7 @@ class wikiModel
             $wiki->setCreationDate($wi['creationDate']);
 
             $cat = new CategorieModel();
+            $cat->setCategorieID($wi['categorieID']);
             $cat->setCategorie($wi['nomCategorie']);
 
             $user = new UserModel();
@@ -174,6 +181,7 @@ class wikiModel
             $tagNames = explode(',', $wi['tagnames']);
             $tags = array_map('trim', $tagNames);
             $tag = new tagModel();
+            $tag->setTagID($wi['tagID']);
             $tag->setTag($tags);
             $wikiData = [
                 'wiki' => $wiki,
@@ -209,10 +217,9 @@ class wikiModel
 
 
 
-
     public function detailsWiki($wikiID)
     {
-        $sql = "SELECT w.wikiID, w.title,w.content, w.creationDate, c.nomCategorie, u.nom, u.prenom, GROUP_CONCAT(t.nomTag) as tagnames
+        $sql = "SELECT w.wikiID, w.title,w.content, w.creationDate,c.categorieID, c.nomCategorie, u.nom, u.prenom,t.tagID, GROUP_CONCAT(t.nomTag) as tagnames
     FROM wiki w
     LEFT JOIN categorie c ON w.categorieID = c.categorieID
     LEFT JOIN user u ON w.iduser = u.iduser
@@ -234,6 +241,7 @@ class wikiModel
             $wiki->setContent($wi['content']);
             $wiki->setCreationDate($wi['creationDate']);
             $cat = new CategorieModel();
+            $cat->setCategorieID($wi['categorieID']);
             $cat->setCategorie($wi['nomCategorie']);
             $user = new UserModel();
             $user->setNom($wi['nom']);
@@ -241,6 +249,7 @@ class wikiModel
             $tagNames = explode(',', $wi['tagnames']);
             $tags = array_map('trim', $tagNames);
             $tag = new tagModel();
+            $tag->setTagID($wi['tagID']);
             $tag->setTag($tags);
             $wikiData = [
                 'wiki' => $wiki,
@@ -254,10 +263,12 @@ class wikiModel
 
         return $wikis;
     }
-    public function searchWiki($keyword) {
+
+    public function searchWiki($keyword)
+    {
         $keyword = '%' . $keyword . '%';
 
-        $query = "SELECT w.wikiID, w.title, w.content, w.creationDate, c.nomCategorie, u.nom, u.prenom, GROUP_CONCAT(t.nomTag) as tagnames
+        $query = "SELECT w.wikiID, w.title, w.content, w.creationDate,c.categorieID, c.nomCategorie, u.nom, u.prenom,t.tagID, GROUP_CONCAT(t.nomTag) as tagnames
         FROM wiki w
         LEFT JOIN categorie c ON w.categorieID = c.categorieID
         LEFT JOIN user u ON w.iduser = u.iduser
@@ -275,17 +286,90 @@ class wikiModel
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getTotalWikis()
+    {
+        $sql = "SELECT COUNT(*) as totalWikis FROM wiki";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
-    public function WikisByCategory(){
-        $sql = "SELECT c.nomCategorie, COUNT(*) AS category_count
+    public function getMostUsedCategory()
+    {
+        $sql = " SELECT c.nomCategorie, COUNT(w.categorieID) as categoryCount
         FROM wiki w
         JOIN categorie c ON w.categorieID = c.categorieID
-        GROUP BY c.nomCategorie;
-        ";
+        GROUP BY w.categorieID
+        ORDER BY categoryCount DESC
+        LIMIT 1";
         $stmt = $this->conn->prepare($sql);
-        return $stmt->execute();
-
-
-
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function getTotalCategories()
+    {
+        $sql = "SELECT COUNT(*) as totalCategories FROM categorie";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getTotalTags()
+    {
+        $sql = "SELECT COUNT(*) as totalTags FROM tags";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getTotalAuthors()
+    {
+        $sql = "SELECT COUNT(iduser) as totalAuthors FROM user";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function getMostPostAuthor()
+    {
+        $sql = "SELECT u.nom, COUNT(w.iduser) as wikiCount
+        FROM wiki w
+        JOIN user u ON w.iduser = u.iduser
+        GROUP BY w.iduser
+        ORDER BY wikiCount DESC
+        LIMIT 1";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function editWiki($wikiID, $categorieID)
+    {
+        $sql = "UPDATE wiki SET title = :title, content = :content, creationDate = :creationDate, categorieID = :categorieID WHERE wikiID = :wikiID";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':title', $this->title);
+        $stmt->bindParam(':content', $this->content);
+        $stmt->bindParam(':creationDate', $this->creationDate);
+        $stmt->bindParam(':categorieID', $categorieID);
+        $stmt->bindParam(':wikiID', $wikiID);
+        return $stmt->execute();
+    }
+
+    public function deleteWikiTag($wikiID)
+    {
+        $deleteSql = "DELETE FROM wikitag WHERE wikiID = :wikiID";
+        $deleteStmt = $this->conn->prepare($deleteSql);
+        $deleteStmt->bindParam(':wikiID', $wikiID);
+        return $deleteStmt->execute();
+    }
+    public function editWikiTag($wikiID, $tagID)
+    {
+        $sql = "INSERT INTO wikitag (wikiID, tagID) VALUES (:wikiID, :tagID)";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':wikiID', $wikiID);
+        $stmt->bindParam(':tagID', $tagID);
+        return $stmt->execute();
+    }
+    
 }
