@@ -30,6 +30,9 @@ class tagModel{
 
     public function addTag()
     {
+        if ($this->isTagExists($this->nomTag)) {
+            return false;
+        }
         $sql = "INSERT INTO tags (nomTag) VALUES (:nomC)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nomC', $this->nomTag);
@@ -55,6 +58,9 @@ class tagModel{
 
     public function editTag($tagID)
     {
+        if ($this->isTagExists($this->nomTag)) {
+            return false;
+        }
         $sql = "UPDATE tags SET nomTag = :nomT WHERE tagID = :tagID";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':tagID', $tagID);
@@ -68,6 +74,16 @@ class tagModel{
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':tagID', $tagID);
         return $stmt->execute();
+    }
+
+    public function isTagExists($tagName)
+    {
+        $sql = "SELECT COUNT(*) FROM tags WHERE nomTag = :tagName";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':tagName', $tagName);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count > 0;
     }
     
 

@@ -6,9 +6,9 @@ $user->isLoggedIn('admin');
 $user->login();
 $user->logout();
 $tag = new tagController();
-$tag->AddTags();
+$err = $tag->AddTags();
 $tags = $tag->DisplayTags();
-$tag->EditTags();
+$error = $tag->EditTags();
 $tag->deletetag();
 ?>
 <!DOCTYPE html>
@@ -110,6 +110,17 @@ $tag->deletetag();
                 <div class="bg-[#0466c8] rounded-3xl p-8 mb-5">
 
                         <h1 class="text-3xl font-bold mb-10 text-white">Tags</h1>
+                        <?php if (!empty($err)) : ?>
+                                <div class="text-xl font-semibold text-white">
+                                    <?php echo $err; ?>
+                                </div>
+                            <?php endif; ?>
+
+                            <?php if (!empty($error)) : ?>
+                                <div class="text-xl font-semibold text-white">
+                                    <?php echo $error; ?>
+                                </div>
+                            <?php endif; ?>
 
                         <hr class="my-10 border border-white">
 

@@ -15,9 +15,14 @@ class categorieController
             $categorie->setCategorie($_POST['nomCategorie']);
             $currentDateTime = date('Y-m-d H:i');
             $categorie->setDateCategorie($currentDateTime);
-            $categorie->addCategorie();
-            header('Location: categories.php');
-            exit;
+            $categorieCreated = $categorie->addcategorie();
+
+            if ($categorieCreated) {
+                header('Location: categories.php');
+                exit;
+            } else {
+                return "La catégorie existe déjà !";
+            }
         }
     }
 
@@ -36,9 +41,15 @@ class categorieController
             $categorie->setCategorie($_POST['nomCategorie']);
             $currentDateTime = date('Y-m-d H:i');
             $categorie->setDateCategorie($currentDateTime);
-            $categorie->editCategorie($idcat);
-            header("Location: categories.php");
-            exit();
+            $categorieUpdated = $categorie->editCategorie($idcat);
+
+        if ($categorieUpdated) {
+            header('Location: categories.php');
+            exit;
+        } else {
+            return "La catégorie existe déjà !";
+        }
+           
         }
     }
 

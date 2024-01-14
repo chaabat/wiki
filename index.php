@@ -59,13 +59,13 @@ $cats = $cat->DisplayCategories();
                 <?php
                 if ($result) {
                     echo '
-            <a href="./app/view/admin/dashboard.php" class="flex justify-center rounded-xl p-2 w-60 mb-5 shadow-lg bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <a href="./view/dashboard.php" class="flex justify-center rounded-xl p-2 w-60 mb-5 shadow-lg bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 <i class="bx bx-arrow-back mr-2 flex items-center"></i> Back to Your Account
             </a>
             ';
                 } else if ($result2) {
                     echo '
-            <a href="./app/view/author/wikis.php" class="flex justify-center rounded-xl p-2 w-60 mb-5 shadow-lg bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            <a href="./view/wikis.php" class="flex justify-center rounded-xl p-2 w-60 mb-5 shadow-lg bg-blue-400 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 <i class="bx bx-arrow-back mr-2 flex items-center"></i> Back to Your Account
             </a>
             ';

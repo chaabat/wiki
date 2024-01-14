@@ -38,6 +38,9 @@ class CategorieModel{
 
     public function addCategorie()
     {
+        if ($this->isCategorieExists($this->nomCategorie)) {
+            return false; 
+        }
         $sql = "INSERT INTO categorie (nomCategorie, dateCategorie) VALUES (:nomC, :dateC)";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nomC', $this->nomCategorie);
@@ -65,6 +68,9 @@ class CategorieModel{
 
     public function editCategorie($categorieID)
     {
+        if ($this->isCategorieExists($this->nomCategorie)) {
+            return false; 
+        }
         $sql = "UPDATE categorie SET nomCategorie = :nomC, dateCategorie = :dateC WHERE categorieID = :categorieID";
         $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':categorieID', $categorieID);
@@ -80,6 +86,17 @@ class CategorieModel{
         $stmt->bindParam(':categorieID', $categorieID);
         return $stmt->execute();
     }
+
+    public function isCategorieExists($CategorieName)
+    {
+        $sql = "SELECT COUNT(*) FROM Categorie WHERE nomCategorie = :CategorieName";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':CategorieName', $CategorieName);
+        $stmt->execute();
+        $count = $stmt->fetchColumn();
+        return $count > 0;
+    }
+
     
 
 }
